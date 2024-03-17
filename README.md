@@ -40,6 +40,8 @@ The show_image decorator takes a function (`original_function`) as input and def
 ## Applying Image Processing Operations
 Now that we have our visual debugger implemented, let's explore some image processing operations and observe their effects using the debugger.
 
+![lenna](images\Lenna.png)
+
 We'll use a sample image called "lenna.png" (this image is famous for being used in in image processing tutorials and courses), throughout the examples. Make sure you have the image file available in the same directory as your script.
 
 First, let's load the image and apply Gaussian blurring:
@@ -59,6 +61,8 @@ image = load_image(image_path="lenna.png")
 # Apply Gaussian blurring
 blurred_image = blur_image(image)
 ```
+![blured](images\blur.png)
+
 By decorating the `load_image` and` blur_image` functions with `@show_image`, we can visualize the loaded image and the blurred image using the visual debugger. The debugger will display the images using `cv2.imshow` and wait for a key press to continue the execution.
 
 Next, let's perform edge detection on the blurred image:
@@ -71,6 +75,7 @@ def edge_detection(image):
 # Apply edge detection
 edges = edge_detection(blurred_image)
 ```
+![edge](images\edge.png)
 
 Here, the edge_detection function applies the Canny edge detection algorithm to the blurred image. The resulting edges are displayed using the visual debugger.
 
@@ -94,6 +99,10 @@ def morph_dilate(edges):
 closed = morph_close(edges)
 dilated = morph_dilate(edges)
 ```
+
+![morph_closed](images\close.png)
+
+![morph_dilated](images\dilate.png)
 
 The `morph_close` function applies morphological closing operation to close gaps between edge segments, and the `morph_dilate` function performs morphological dilation to expand the edges. The closed and dilated edges are displayed using the visual debugger.
 
@@ -119,6 +128,11 @@ def segment_image(image, mask):
 segmented_closed = segment_image(image, closed)
 segmented_dilated = segment_image(image, dilated)
 ```
+
+![segment_closed](images\segment_close.png)
+
+![segment_dilated](images\segment_dilate.png)
+
 
 The `segment_image` function performs contour detection on the provided mask and creates a segmented image by drawing the contours on a black mask. The segmented images are then displayed using the visual debugger.
 
